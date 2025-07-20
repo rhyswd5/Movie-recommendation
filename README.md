@@ -16,7 +16,7 @@ A selection of 100 movies is presented to the user in 10 sets of 10. The user is
 Each remaining movie is assigned a total score based on how closely it matches the user’s favourites across several attributes:
 
 - Year Similarity:
-Movies released within 5 years of a liked film receive higher points (up to 4), while those within 10 years receive fewer.
+Movies released within 5 years of a liked film receive 4 points, while those within 10 years receive 2.
 
 - Director Match:
 A direct match in director earns 6 points, emphasising the impact of directorial style.
@@ -62,16 +62,14 @@ The rule-based recommender was a valuable baseline, but it has several key limit
 ### <b>2. Supervised Machine Learning (TF-IDF + Random Forest Classifier)</b>
 #### Approach
 
-Users choose favourite movies from a dropdown list. A label (1 if the movie is liked, 0 if otherwise) is applied to all movies based on user selection. Features (e.g. genres, directors, and cast) are combined into text and vectorised using TF-IDF. The target variable (Liked) is used to train a Random Forest Classifier. The data is split into training and test sets using train_test_split with stratification to preserve label balance. After training, the model predicts a probability score for each movie, representing the likelihood that the user would like it.
-
-
+Users choose favourite movies from a dropdown list. A label is applied to all movies based on user selection (1 if the movie is liked, 0 if otherwise). Features (e.g. genres, directors, and cast) are combined into text and vectorised using TF-IDF. The target variable (Liked) is then used to train a Random Forest Classifier. The data is split into training and test sets using train_test_split with stratification to preserve label balance. After training, the model predicts a probability score for each movie, representing the probabilty that the user would like it.
 
 #### Key Improvements
 The transition from a rule-based recommender to a supervised machine learning model introduced several key improvements:
 
 - The Random Forest classifier can detect complex, non-linear relationships between genres, directors, and cast members — something rule logic struggles with.
 - Rather than applying static rules for everyone, the model adapts to the individual user's choices and generalises their preferences to unseen films.
--   The supervised model enables use of standard evaluation metrics (e.g. accuracy, precision, recall, ROC-AUC) to measure performance objectively.
+- The supervised model enables use of standard evaluation metrics (e.g. accuracy, precision, recall, ROC-AUC) to measure performance objectively.
 - Year was excluded from the supervised model as:
     - It showed weak correlation with user preferences compared to content-based features like genres, directors, and actors.
     - Including “Year” introduced potential bias toward newer films without capturing actual taste.

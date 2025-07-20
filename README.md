@@ -144,6 +144,8 @@ The following table summarises the capabilities and trade-offs of each approach.
 
 ## Possible Future Improvements
 - Include movie plot summaries or reviews in TF-IDF input for deeper semantic understanding.
+- 
+- Replace the fixed movie selection list with a searchable interface across all 1000 titles, allowing users to choose films they genuinely like.
 
 - Add collaborative filtering to blend content and user preference patterns.
 
